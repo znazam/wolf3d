@@ -1,0 +1,73 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: znazam <znazam@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/07/09 10:44:14 by znazam            #+#    #+#              #
+#    Updated: 2019/08/27 15:06:57 by znazam           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+SRC_PATH = ./srcs/
+
+SRC_NAME = main.c error.c images.c
+
+SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
+
+OBJ = $(patsubst %.c, %.o, $(SRC))
+
+NAME = wolf3d
+
+HEADERS = wolf3d.h
+
+FLAGS = -Wextra -Werror -Wall -I libft -I GNL -I .
+
+all: LIBFT GNL LIBVEC $(NAME)
+
+$(NAME): $(OBJ)
+	@gcc $(FLAGS) -o $(NAME) $(OBJ) LIBVEC/libvec.a libft/libft.a GNL/get_next_line.o -lmlx -framework OpenGL -framework AppKit
+	@echo "\033[36mAll Libraries Compiled."
+LIBFT:
+	git submodule init libft
+	git submodule update libft
+	@make -C libft
+
+GNL:
+	git submodule init GNL
+	git submodule update GNL
+	@gcc -c $(FLAGS) GNL/get_next_line.c -o GNL/get_next_line.o
+	
+LIBVEC:
+	git submodule init libvec
+	git submodule update libvec
+	@make -C libvec
+
+$(SRC_PATH)%.o: $(SRC_PATH)%.c $(HEADERS)
+	@gcc -g -c $(FLAGS) -o $@ $<
+	@echo "\033[94mRemade files."
+
+clean:
+	@rm -f $(OBJ)
+	@echo "\033[94mAll Object Files Removed."
+
+fclean: clean
+	@rm -f $(NAME)
+	@rm GNL/get_next_line.o
+	@make -C libft fclean
+	@make -C libvec fclean
+	@echo "\033[94mAll Library Object Files Removed."
+
+re: fclean all
+
+updateSubmodules:
+	make fclean
+	git submodule foreach git checkout master
+	git submodule foreach git pull origin master
+	git add .
+	git commit -m "submodule update"
+	git push
+	@echo "\033[94mSubmodules Updated."
+
+.PHONY: LIBFT LIBVEC re fclean clean GNL all updateSubmodules
