@@ -12,6 +12,8 @@
 
 # define SCREEN_W 1000
 # define SCREEN_H 1000
+# define map_W 24
+# define map_H 24
 
 typedef struct	s_pixel
 {
