@@ -14,22 +14,38 @@
 # define SCREEN_H 1000
 # define map_W 24
 # define map_H 24
+# define posX 22.0
+# define posY 12.0
+# define dirX -1.0
+# define dirY 0.0
+# define planeX 0
+# define planeY 0.66
 
-typedef struct  s_read
+typedef struct	s_read
 {
 	int			cols;
 	int			rows;	
 	
-}               t_read;
+}				t_read;
 
-// typedef struct  s_vector
-// {
-// 	double		x;
-// 	double		y;
-// 	double		z;
-// }               t_vector;
+typedef struct	s_view
+{
+	double		posx;
+	double		posy;
+	double		dirx;
+	double		diry;
+	double		planex;
+	double		planey;
+}				t_view;
 
-typedef struct  s_image
+typedef struct	s_vector
+{
+	double		x;
+	double		y;
+	double		z;
+}				t_vector;
+
+typedef struct	s_image
 {
 	void		*img;
 	char		*data;
@@ -37,14 +53,14 @@ typedef struct  s_image
 	int			sizeline;
 	int			endian;
 	
-}               t_image;
+}				t_image;
 
 typedef struct  s_player
 {
 	t_vector	*pos;
 	
 	
-}               t_player;
+}				t_player;
 
 typedef struct	s_mlx_image
 {
@@ -65,7 +81,7 @@ typedef struct  s_mlx
 	t_read		read_info;
 	int			**map;
 	t_mlx_image	img;
-}               t_mlx;
+}				t_mlx;
 
 
 
@@ -78,9 +94,9 @@ void			line_delete(void *content, size_t size);
 int				exitfun(void *data);
 int				exitb(int button);
 void			error_check(int error);
-int 			read_map(t_mlx *mlx, char **file);
-int     		check_map(char *line, t_mlx *env);
-int     		count_rows(char *str);
-int    		 	count_cols(char *str);
+int				read_map(t_mlx *mlx, char **file);
+int				check_map(char *line, t_mlx *env);
+int				count_rows(char *str);
+int				count_cols(char *str);
 #endif
 

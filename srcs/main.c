@@ -28,6 +28,7 @@ int	main(int ac, char **av)
 		if (fd == -1)
 			error_check(0);
 		init_image(&env, &env.img, SCREEN_W, SCREEN_H);
+		position(&env, av[1]);
 		mlx_hook(env.window, 17, 0L, exitfun, &env);
 		mlx_key_hook(env.window, exitb, 0);
 		mlx_loop(env.mlx);
