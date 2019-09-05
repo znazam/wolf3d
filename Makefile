@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: znazam <znazam@student.42.fr>              +#+  +:+       +#+         #
+#    By: juboyer <juboyer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/09 10:44:14 by znazam            #+#    #+#              #
-#    Updated: 2019/08/27 15:35:03 by znazam           ###   ########.fr        #
+#    Updated: 2019/09/05 09:44:19 by juboyer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_PATH = ./srcs/
 
-SRC_NAME = main.c error.c images.c
+SRC_NAME = main.c error.c images.c read.c
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 

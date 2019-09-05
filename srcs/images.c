@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   images.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: znazam <znazam@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juboyer <juboyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 10:39:57 by znazam            #+#    #+#             */
-/*   Updated: 2019/08/27 11:01:40 by znazam           ###   ########.fr       */
+/*   Updated: 2019/09/05 09:57:13 by juboyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,20 @@ void	clear_image(t_mlx_image *img, int colour)
 	}
 }
 
-void	init_image(t_env *env, t_mlx_image *img, int width, int height)
+void	init_image(t_mlx *env, t_mlx_image *img, int width, int height)
 {
-	img->img_ptr = mlx_new_image(env->mlx_ptr, width, height);
+	img->img_ptr = mlx_new_image(env->mlx, width, height);
 	img->raw_data = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->size_line,
 	&img->endian);
 	img->width = width;
 	img->height = height;
-	img->pos.x = 0;
-	img->pos.y = 0;
+	img->pos.cols = 0;
+	img->pos.rows = 0;
 	clear_image(img, 0x000000);
 }
 
-void	put_image(t_env *env, t_mlx_image *img)
+void	put_image(t_mlx *env, t_mlx_image *img)
 {
-	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, img->img_ptr,
-	img->pos.x, img->pos.y);
+	mlx_put_image_to_window(env->mlx, env->window, img->img_ptr,
+	img->pos.cols, img->pos.rows);
 }
