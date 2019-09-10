@@ -3,7 +3,7 @@
 
 # include "../libft/libft.h"
 # include "../libvec/includes/libvec.h"
-# include "../GNL/get_next_line.h"
+# include "../GNL/get_next_line.a"
 # include <mlx.h>
 # include <stdlib.h>
 # include <stdio.h>
