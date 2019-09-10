@@ -6,7 +6,7 @@
 /*   By: juboyer <juboyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:03:33 by juboyer           #+#    #+#             */
-/*   Updated: 2019/09/10 09:42:40 by juboyer          ###   ########.fr       */
+/*   Updated: 2019/09/10 09:49:20 by juboyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void    dda(t_mlx *s)
             s->ray.side = 1;
         }
         //Check if ray has hit a wall
-        if (s->map[s->read_info.cols][s->read_info.rows] > 0) 
+        if (s->map[(int)s->ray.ray_map.x][(int)s->ray.ray_map.y] > 0) 
             s->ray.hit = 1;
     }
 }
