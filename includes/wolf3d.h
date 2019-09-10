@@ -10,6 +10,8 @@
 # include <math.h>
 # include <fcntl.h>
 
+# define green 0xFF0000
+# define red 0x7CFC00
 # define SCREEN_W 1000
 # define SCREEN_H 1000
 # define map_W 24
@@ -87,15 +89,18 @@ typedef struct	s_mlx_image
 typedef struct  s_mlx
 {
 	void*		mlx;
-	t_player	*player;
+	t_player	player;
 	t_ray		ray;
 	void*		window;
 	t_read		read_info;
 	int			**map;
 	t_mlx_image	img;
+	t_view		view;
+	t_vector	pos;
 }				t_mlx;
 
 void			position(t_mlx *env, const char *filename);
+void			draw(t_mlx *s);
 void			put_image(t_mlx *env, t_mlx_image *img);
 void			init_image(t_mlx *env, t_mlx_image *img, int width, int height);
 void			clear_image(t_mlx_image *img, int colour);
