@@ -14,6 +14,7 @@
 # define SCREEN_H 1000
 # define map_W 24
 # define map_H 24
+# define ABS(X) (X < 0 ? -X : X)
 //# define posX 22.0
 //# define posY 12.0
 //# define dirX -1.0
@@ -102,6 +103,7 @@ void			pixel_put_image(t_mlx_image *img, int colour, int x, int y);
 void			line_delete(void *content, size_t size);
 int				exitfun(void *data);
 void    		initialize_dda(t_mlx *s);
+void    		dda(t_mlx *s);
 int				exitb(int button);
 void			error_check(int error);
 int				read_map(t_mlx *mlx, char **file);
