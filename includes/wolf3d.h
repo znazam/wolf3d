@@ -3,13 +3,15 @@
 
 # include "../libft/libft.h"
 # include "../libvec/includes/libvec.h"
-# include "../GNL/get_next_line.a"
+# include "../GNL/get_next_line.h"
 # include <mlx.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
 # include <fcntl.h>
 
+# define GREEN 0x7CFC00
+# define RED 0xFF0000
 # define SCREEN_W 1000
 # define SCREEN_H 1000
 # define map_W 24
@@ -21,6 +23,12 @@
 //# define dirY 0.0
 //# define planeX 0
 //# define planeY 0.66
+
+typedef struct	s_color
+{
+	int r;
+	int g;
+} 				t_color;
 
 typedef struct	s_read
 {

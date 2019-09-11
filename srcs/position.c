@@ -16,7 +16,7 @@ void		position(t_mlx *env, const char *filename)
 	oldTime = 0;
 }
 
-void		direction_ray(t_vector width, t_view view)
+void		draw(t_vector width, t_view view)
 {
 	int x;
 	int mapx;
@@ -34,6 +34,10 @@ void		direction_ray(t_vector width, t_view view)
 		double cameraX = 2 * x / (width.w) - 1;
 		double rayDirX = view.dirx + view.planex * cameraX;
 		double rayDirY = view.diry + view.planey * cameraX;
+		rayDirX = RED;
+		rayDirY = GREEN;
+
+
 	}
 	x++;
 }

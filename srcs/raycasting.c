@@ -6,11 +6,7 @@
 /*   By: znazam <znazam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:03:33 by juboyer           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/09/09 13:54:07 by znazam           ###   ########.fr       */
-=======
-/*   Updated: 2019/09/10 09:42:40 by juboyer          ###   ########.fr       */
->>>>>>> b033c279c08ee89df558fcc6cca8db18bea378b8
+/*   Updated: 2019/09/10 14:36:02 by znazam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +59,17 @@ void    dda(t_mlx *s)
             s->ray.side = 1;
         }
         //Check if ray has hit a wall
-        if (s->map[s->read_info.cols][s->read_info.rows] > 0) 
+        if (s->map[(int)s->ray.ray_map.x][(int)s->ray.ray_map.y] > 0) 
             s->ray.hit = 1;
     }
 }
 
-//void    initialize_ray()
+void    initialize_ray(t_mlx *d)
+{
+	double perpWallDist;
+
+	if (side == 0)
+		perpWallDist = (d->ray.ray_map.x - d->pos.x + (1 - d->ray.steps.x) / 2) / d->ray.raydir.x;
+    else
+		perpWallDist = (d->ray.ray_map.y - d->pos.x + (1 - d->ray.steps.y) / 2) / d->ray.raydir.y;
+}
