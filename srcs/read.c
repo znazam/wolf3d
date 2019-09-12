@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: znazam <znazam@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juboyer <juboyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 07:55:31 by juboyer           #+#    #+#             */
-/*   Updated: 2019/09/05 10:17:51 by znazam           ###   ########.fr       */
+/*   Updated: 2019/09/11 14:15:18 by juboyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int		read_map(t_mlx *mlx, char **av)
 
 	line = ft_strnew(10000);
 	fd = open(av[1], O_RDONLY);
+	mlx->fd_test = fd;
 	if(fd < 0 || read(fd, line, 10000) < 1)
 		return (0);
 	if(!check_map(line, mlx))

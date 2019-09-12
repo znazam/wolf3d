@@ -12,8 +12,8 @@
 
 # define green 0xFF0000
 # define red 0x7CFC00
-# define SCREEN_W 1000
-# define SCREEN_H 1000
+# define SCREEN_W 1024
+# define SCREEN_H 768
 # define map_W 24
 # define map_H 24
 # define ABS(X) (X < 0 ? -X : X)
@@ -53,7 +53,7 @@ typedef struct	s_image
 
 typedef struct  s_player
 {
-	t_vector	*pos;
+	t_vector	pos;
 	
 	
 }				t_player;
@@ -69,6 +69,8 @@ typedef struct  s_ray
 	t_vector	raypos;
 	int			hit;
 	int			side;
+	int			start;
+	int			end;
 	int			perpWallDist;
 	
 	
@@ -93,10 +95,12 @@ typedef struct  s_mlx
 	t_ray		ray;
 	void*		window;
 	t_read		read_info;
+	int			lineheight;
 	int			**map;
 	t_mlx_image	img;
 	t_view		view;
 	t_vector	pos;
+	int			fd_test;
 }				t_mlx;
 
 void			position(t_mlx *env, const char *filename);
@@ -115,5 +119,8 @@ int				read_map(t_mlx *mlx, char **file);
 int				check_map(char *line, t_mlx *env);
 int				count_rows(char *str);
 int				count_cols(char *str);
+void 			ray_cast(t_mlx *d);
+void   			initialize_ray(t_mlx *d, int x);
+
 #endif
 

@@ -6,7 +6,7 @@
 /*   By: juboyer <juboyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:03:33 by juboyer           #+#    #+#             */
-/*   Updated: 2019/09/10 14:10:09 by juboyer          ###   ########.fr       */
+/*   Updated: 2019/09/12 14:32:17 by juboyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,67 @@ void    dda(t_mlx *s)
     }
 }
 
-void    initialize_ray(t_mlx *d)
+void    initialize_ray(t_mlx *d, int x)
 {
+    double cameraX;
+
+    cameraX = 2 * x / (SCREEN_W) - 1;
+    d->ray.raypos.x = d->player.pos.x;
+	d->ray.raypos.y = d->player.pos.y;
+	d->ray.raydir.x = d->view.dirx + d->view.planex * cameraX;
+	d->ray.raydir.y = d->view.diry + d->view.planey * cameraX;
+    d->ray.ray_map.x = (int)d->ray.raypos.x;
+	d->ray.ray_map.y = (int)d->ray.raypos.y;
+    initialize_dda(d);
+    dda(d);
     if (d->ray.side == 0)
         d->ray.perpWallDist = (d->ray.ray_map.x - d->pos.x + (1 - d->ray.steps.x) / 2) / d->ray.raydir.x;
-   else
-        d->ray.perpWallDist = (d->ray.ray_map.y - d->pos.x + (1 - d->ray.steps.y) / 2) / d->ray.raydir.y;
+    else
+        d->ray. perpWallDist = (d->ray.ray_map.y - d->pos.x + (1 - d->ray.steps.y) / 2) / d->ray.raydir.y;
+
 }
+
+void	draw_ground(t_mlx *t, int x, int ground_colour)
+{
+	int y;
+
+	if (t->ray.end > 0)
+	{
+		y = t->ray.end - 1;
+		if (x < SCREEN_W && y < SCREEN_H)
+			while (++y < SCREEN_H)
+				ft_memcpy(t->img.raw_data + 4 * SCREEN_W * y + x * 4,
+						&ground_colour, sizeof(int));
+	}
+}
+
+void ray_cast(t_mlx *d)
+{
+    int x = 0;
+    
+    d->img.img_ptr = mlx_new_image(d->mlx, SCREEN_W, SCREEN_H);
+    d->img.raw_data = mlx_get_data_addr(d->img.img_ptr,
+        &d->img.bpp, &d->img.size_line, &d->img.endian);
+
+    while(x < SCREEN_W)
+    {   
+        initialize_ray(d, x);
+        //Calculate height of line to draw on screen
+        d->lineheight = (SCREEN_H / d->ray.perpWallDist);
+
+        //calculate lowest and highest pixel
+        d->ray.start = (-d->lineheight / 2) + (SCREEN_H  / 2);
+        if( d->ray.start < 0)
+             d->ray.start = 0;
+        d->ray.end = (d->lineheight / 2) + (SCREEN_H  / 2);
+        if( d->ray.end >= SCREEN_H)
+             d->ray.end = SCREEN_H - 1;
+        mlx_pixel_put(d->mlx, d->window, x, 100, 0xffffff);
+        
+        x++;
+    }
+    mlx_put_image_to_window(d->mlx, d->window, d->img.img_ptr, 0, 0);
+	mlx_destroy_image(d->mlx, d->img.img_ptr);
+}
+
+

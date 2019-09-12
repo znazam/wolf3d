@@ -6,7 +6,7 @@
 /*   By: juboyer <juboyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 10:39:57 by znazam            #+#    #+#             */
-/*   Updated: 2019/09/05 09:57:13 by juboyer          ###   ########.fr       */
+/*   Updated: 2019/09/11 14:37:03 by juboyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	pixel_put_image(t_mlx_image *img, int colour, int x, int y)
 	data = (int*)&img->raw_data[x * 4 + y * img->size_line];
 	*data = colour;
 }
+
+
 
 void	clear_image(t_mlx_image *img, int colour)
 {
