@@ -12,6 +12,9 @@
 
 # define green 0xFF0000
 # define red 0x7CFC00
+# define Blue 0x0000FF
+# define Yellow	0xFFFF00
+# define white 0xFFFFFF
 # define SCREEN_W 1000
 # define SCREEN_H 1000
 # define map_W 24
@@ -24,11 +27,13 @@
 //# define planeX 0
 //# define planeY 0.66
 
-typedef struct	s_color
+typedef struct	s_wall
 {
-	int r;
-	int g;
-} 				t_color;
+	int lineHeight;
+	int h;
+	int drawStart;
+	int drawEnd;
+} 				t_wall;
 
 typedef struct	s_read
 {
@@ -60,8 +65,6 @@ typedef struct	s_image
 typedef struct  s_player
 {
 	t_vector	*pos;
-	
-	
 }				t_player;
 
 
@@ -76,8 +79,6 @@ typedef struct  s_ray
 	int			hit;
 	int			side;
 	int			perpWallDist;
-	
-	
 }				t_ray;
 
 typedef struct	s_mlx_image
@@ -103,6 +104,7 @@ typedef struct  s_mlx
 	t_mlx_image	img;
 	t_view		view;
 	t_vector	pos;
+	t_wall		wall;
 }				t_mlx;
 
 void			position(t_mlx *env, const char *filename);

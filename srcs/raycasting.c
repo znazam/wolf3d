@@ -6,7 +6,7 @@
 /*   By: znazam <znazam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:03:33 by juboyer           #+#    #+#             */
-/*   Updated: 2019/09/11 08:20:35 by znazam           ###   ########.fr       */
+/*   Updated: 2019/09/11 13:40:30 by znazam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,20 @@ void    dda(t_mlx *s)
 
 void    initialize_ray(t_mlx *d)
 {
+	//Calculate distance projected on camera direction (Euclidean distance will give fisheye effect!)
     if (d->ray.side == 0)
         d->ray.perpWallDist = (d->ray.ray_map.x - d->pos.x + (1 - d->ray.steps.x) / 2) / d->ray.raydir.x;
    else
         d->ray.perpWallDist = (d->ray.ray_map.y - d->pos.x + (1 - d->ray.steps.y) / 2) / d->ray.raydir.y;
+}
+
+void	calwall(t_mlx *w)
+{
+	//Calculate height of line to draw on screen
+    w->wall.lineHeight = (int)(w->wall.h / w->ray.perpWallDist);
+    //calculate lowest and highest pixel to fill in current stripe
+    w->wall.drawStart = w->wall.(-(lineHeight)) / 2 + w->wall.h / 2;
+    if(w->wall.drawStart < 0)w->wall.drawStart = 0;
+    w->wall.drawEnd = w->wall.lineHeight / 2 + w->wall.h / 2;
+    if(w->wall.drawEnd >= w->wall.h)w->wall.drawEnd = w->wall.h - 1;
 }
