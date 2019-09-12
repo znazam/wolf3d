@@ -6,13 +6,13 @@
 #    By: juboyer <juboyer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/09 10:44:14 by znazam            #+#    #+#              #
-#    Updated: 2019/09/10 14:06:28 by juboyer          ###   ########.fr        #
+#    Updated: 2019/09/11 14:12:21 by juboyer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_PATH = ./srcs/
 
-SRC_NAME = main.c error.c images.c read.c raycasting.c position.c
+SRC_NAME = main.c error.c images.c read.c raycasting.c
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
