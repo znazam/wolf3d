@@ -79,7 +79,13 @@ typedef struct  s_ray
 	int			side;
 	int			start;
 	int			end;
+<<<<<<< HEAD
 	int			perpWallDist;
+=======
+	float		perpWallDist;
+	
+	
+>>>>>>> 087008d02456289fd68ca91f30c73ab47e946c15
 }				t_ray;
 
 typedef struct	s_mlx_image
@@ -103,6 +109,8 @@ typedef struct  s_mlx
 	t_read		read_info;
 	int			lineheight;
 	int			**map;
+	int 		map_width;
+	int 		map_height;
 	t_mlx_image	img;
 	t_view		view;
 	t_vector	pos;

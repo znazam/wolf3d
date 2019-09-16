@@ -6,7 +6,7 @@
 /*   By: juboyer <juboyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 10:39:57 by znazam            #+#    #+#             */
-/*   Updated: 2019/09/11 14:37:03 by juboyer          ###   ########.fr       */
+/*   Updated: 2019/09/12 15:31:36 by juboyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	init_image(t_mlx *env, t_mlx_image *img, int width, int height)
 	img->height = height;
 	img->pos.cols = 0;
 	img->pos.rows = 0;
-	clear_image(img, 0x000000);
+	clear_image(img, 0xff0000);
 }
 
 void	put_image(t_mlx *env, t_mlx_image *img)

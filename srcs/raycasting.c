@@ -6,7 +6,7 @@
 /*   By: znazam <znazam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:03:33 by juboyer           #+#    #+#             */
-/*   Updated: 2019/09/12 15:26:09 by znazam           ###   ########.fr       */
+/*   Updated: 2019/09/16 11:38:52 by znazam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ void    dda(t_mlx *s)
             s->ray.side = 1;
         }
         //Check if ray has hit a wall
-        if (s->map[(int)s->ray.ray_map.x][(int)s->ray.ray_map.y] > 0) 
+        int x, y;
+        x = (int)s->ray.ray_map.x;
+        y = (int)s->ray.ray_map.y;
+        if (x < 0 || y < 0 || x > 100 || y > 100 || s->map[x][y] > 0) 
             s->ray.hit = 1;
     }
 }
@@ -108,23 +111,23 @@ void ray_cast(t_mlx *d)
 
     while(x < SCREEN_W)
     {   
-        // initialize_ray(d, x);
-        // //Calculate height of line to draw on screen
-        // d->lineheight = (SCREEN_H / d->ray.perpWallDist);
+        initialize_ray(d, x);
+        //Calculate height of line to draw on screen
+        if (d->ray.perpWallDist != 0)
+            d->lineheight = (SCREEN_H / d->ray.perpWallDist);
 
-        // //calculate lowest and highest pixel
-        // d->ray.start = (-d->lineheight / 2) + (SCREEN_H  / 2);
-        // if( d->ray.start < 0)
-        //      d->ray.start = 0;
-        // d->ray.end = (d->lineheight / 2) + (SCREEN_H  / 2);
-        // if( d->ray.end >= SCREEN_H)
-        //      d->ray.end = SCREEN_H - 1;
-        mlx_pixel_put(d->mlx, d->window, x, 100, 0xffffff);
-        
+        //calculate lowest and highest pixel
+        d->ray.start = (-d->lineheight / 2) + (SCREEN_H  / 2);
+        if( d->ray.start < 0)
+             d->ray.start = 0;
+        d->ray.end = (d->lineheight / 2) + (SCREEN_H  / 2);
+        if( d->ray.end >= SCREEN_H)
+             d->ray.end = SCREEN_H - 1;
+        pixel_put_image(&d->img, 0xffffff, x, 100);
         x++;
     }
     mlx_put_image_to_window(d->mlx, d->window, d->img.img_ptr, 0, 0);
-	mlx_destroy_image(d->mlx, d->img.img_ptr);
+	//mlx_destroy_image(d->mlx, d->img.img_ptr);
 }
 
 
