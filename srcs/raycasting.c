@@ -6,11 +6,7 @@
 /*   By: znazam <znazam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:03:33 by juboyer           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/09/11 13:40:30 by znazam           ###   ########.fr       */
-=======
-/*   Updated: 2019/09/12 14:32:17 by juboyer          ###   ########.fr       */
->>>>>>> 1018b9c6a1aee00d4a04e946b1952ac0071bc76d
+/*   Updated: 2019/09/12 15:26:09 by znazam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,25 +66,6 @@ void    dda(t_mlx *s)
 
 void    initialize_ray(t_mlx *d, int x)
 {
-<<<<<<< HEAD
-	//Calculate distance projected on camera direction (Euclidean distance will give fisheye effect!)
-    if (d->ray.side == 0)
-        d->ray.perpWallDist = (d->ray.ray_map.x - d->pos.x + (1 - d->ray.steps.x) / 2) / d->ray.raydir.x;
-   else
-        d->ray.perpWallDist = (d->ray.ray_map.y - d->pos.x + (1 - d->ray.steps.y) / 2) / d->ray.raydir.y;
-}
-
-void	calwall(t_mlx *w)
-{
-	//Calculate height of line to draw on screen
-    w->wall.lineHeight = (int)(w->wall.h / w->ray.perpWallDist);
-    //calculate lowest and highest pixel to fill in current stripe
-    w->wall.drawStart = w->wall.(-(lineHeight)) / 2 + w->wall.h / 2;
-    if(w->wall.drawStart < 0)w->wall.drawStart = 0;
-    w->wall.drawEnd = w->wall.lineHeight / 2 + w->wall.h / 2;
-    if(w->wall.drawEnd >= w->wall.h)w->wall.drawEnd = w->wall.h - 1;
-}
-=======
     double cameraX;
 
     cameraX = 2 * x / (SCREEN_W) - 1;
@@ -125,23 +102,23 @@ void ray_cast(t_mlx *d)
 {
     int x = 0;
     
-    d->img.img_ptr = mlx_new_image(d->mlx, SCREEN_W, SCREEN_H);
-    d->img.raw_data = mlx_get_data_addr(d->img.img_ptr,
-        &d->img.bpp, &d->img.size_line, &d->img.endian);
+    // d->img.img_ptr = mlx_new_image(d->mlx, SCREEN_W, SCREEN_H);
+    // d->img.raw_data = mlx_get_data_addr(d->img.img_ptr,
+    //     &d->img.bpp, &d->img.size_line, &d->img.endian);
 
     while(x < SCREEN_W)
     {   
-        initialize_ray(d, x);
-        //Calculate height of line to draw on screen
-        d->lineheight = (SCREEN_H / d->ray.perpWallDist);
+        // initialize_ray(d, x);
+        // //Calculate height of line to draw on screen
+        // d->lineheight = (SCREEN_H / d->ray.perpWallDist);
 
-        //calculate lowest and highest pixel
-        d->ray.start = (-d->lineheight / 2) + (SCREEN_H  / 2);
-        if( d->ray.start < 0)
-             d->ray.start = 0;
-        d->ray.end = (d->lineheight / 2) + (SCREEN_H  / 2);
-        if( d->ray.end >= SCREEN_H)
-             d->ray.end = SCREEN_H - 1;
+        // //calculate lowest and highest pixel
+        // d->ray.start = (-d->lineheight / 2) + (SCREEN_H  / 2);
+        // if( d->ray.start < 0)
+        //      d->ray.start = 0;
+        // d->ray.end = (d->lineheight / 2) + (SCREEN_H  / 2);
+        // if( d->ray.end >= SCREEN_H)
+        //      d->ray.end = SCREEN_H - 1;
         mlx_pixel_put(d->mlx, d->window, x, 100, 0xffffff);
         
         x++;
@@ -151,4 +128,3 @@ void ray_cast(t_mlx *d)
 }
 
 
->>>>>>> 1018b9c6a1aee00d4a04e946b1952ac0071bc76d
