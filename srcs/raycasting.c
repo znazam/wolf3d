@@ -6,7 +6,7 @@
 /*   By: juboyer <juboyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:03:33 by juboyer           #+#    #+#             */
-/*   Updated: 2019/09/12 15:44:53 by juboyer          ###   ########.fr       */
+/*   Updated: 2019/09/16 09:34:42 by juboyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,20 +87,6 @@ void    initialize_ray(t_mlx *d, int x)
 
 }
 
-void	draw_ground(t_mlx *t, int x, int ground_colour)
-{
-	int y;
-
-	if (t->ray.end > 0)
-	{
-		y = t->ray.end - 1;
-		if (x < SCREEN_W && y < SCREEN_H)
-			while (++y < SCREEN_H)
-				ft_memcpy(t->img.raw_data + 4 * SCREEN_W * y + x * 4,
-						&ground_colour, sizeof(int));
-	}
-}
-
 void ray_cast(t_mlx *d)
 {
     int x = 0;
@@ -123,11 +109,13 @@ void ray_cast(t_mlx *d)
         d->ray.end = (d->lineheight / 2) + (SCREEN_H  / 2);
         if( d->ray.end >= SCREEN_H)
              d->ray.end = SCREEN_H - 1;
-        pixel_put_image(&d->img, 0xffffff, x, 100);
+        draw_ground(d, x, 0x3f3f3f);
+        
+        //pixel_put_image(&d->img, 0xffffff, x, 100);
         x++;
     }
     mlx_put_image_to_window(d->mlx, d->window, d->img.img_ptr, 0, 0);
-	//mlx_destroy_image(d->mlx, d->img.img_ptr);
+	mlx_destroy_image(d->mlx, d->img.img_ptr);
 }
 
 
