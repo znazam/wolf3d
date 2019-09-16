@@ -12,6 +12,18 @@
 
 # define green 0xFF0000
 # define red 0x7CFC00
+# define Blue 0x0000FF
+# define Yellow	0xFFFF00
+# define white 0xFFFFFF
+# define exit_b 53
+# define D_LEFT 37
+# define D_UP 38
+# define D_RIGHT 39
+# define D_DOWN 40
+# define rotSpeed 0.2
+# define moveSpeed 1.0
+# define green 0xFF0000
+# define red 0x7CFC00
 # define SCREEN_W 1024
 # define SCREEN_H 768
 # define map_W 24
@@ -79,13 +91,9 @@ typedef struct  s_ray
 	int			side;
 	int			start;
 	int			end;
-<<<<<<< HEAD
-	int			perpWallDist;
-=======
 	float		perpWallDist;
 	
 	
->>>>>>> 087008d02456289fd68ca91f30c73ab47e946c15
 }				t_ray;
 
 typedef struct	s_mlx_image
@@ -128,6 +136,11 @@ int				exitfun(void *data);
 void    		initialize_dda(t_mlx *s);
 void    		dda(t_mlx *s);
 int				exitb(int button);
+int				keys(int button);
+int				kup(int button);
+int				kdown(int button);
+int				kright(int button);
+int				kleft(int button);
 void			error_check(int error);
 int				read_map(t_mlx *mlx, char **file);
 int				check_map(char *line, t_mlx *env);
