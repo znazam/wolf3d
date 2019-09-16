@@ -148,6 +148,7 @@ int				count_rows(char *str);
 int				count_cols(char *str);
 void 			ray_cast(t_mlx *d);
 void   			initialize_ray(t_mlx *d, int x);
+void			draw_ground(t_mlx *t, int x, int ground_colour);
 
 #endif
 

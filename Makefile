@@ -6,13 +6,21 @@
 #    By: znazam <znazam@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/09 10:44:14 by znazam            #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2019/09/16 13:41:18 by znazam           ###   ########.fr        #
+=======
+#    Updated: 2019/09/16 09:34:27 by juboyer          ###   ########.fr        #
+>>>>>>> f808b4c38bbd78adc7245937b2cc56118ef67faa
 #                                                                              #
 # **************************************************************************** #
 
 SRC_PATH = ./srcs/
 
+<<<<<<< HEAD
 SRC_NAME = main.c error.c keys.c images.c read.c raycasting.c 
+=======
+SRC_NAME = main.c error.c images.c read.c raycasting.c draw.c
+>>>>>>> f808b4c38bbd78adc7245937b2cc56118ef67faa
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
